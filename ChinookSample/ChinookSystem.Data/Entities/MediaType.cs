@@ -16,6 +16,5 @@ namespace ChinookSystem.Data.Entities
     {
 
         public virtual ICollection<Track> Tracks { get; set; }
-        //public virtual Album Albums { get; set; }
     }
 }
