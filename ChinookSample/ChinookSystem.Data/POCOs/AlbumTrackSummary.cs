@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChinookSystem.Data.POCOs
 {
-    class AlbumTrackSummary
+    public class AlbumTrackSummary
     {
     }
 }
