@@ -16,6 +16,14 @@ namespace ChinookSystem.DAL
     [DataObject]
     public class ArtistController
     {
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<Artist> Artist_listAll()
+        {
+            using (var context = new ChinookContext())
+            {
+                return context.Artists.ToList();
+            }
+        }
         //Report a datasset containing data from
         //multiple entites
         //this will use Linq to entity access 
