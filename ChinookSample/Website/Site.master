@@ -86,7 +86,7 @@
                         <asp:MenuItem Text="Home" NavigateUrl="~/"></asp:MenuItem>
                         <asp:MenuItem Text="DDLPages" Value="bob" >
                             <asp:MenuItem Text="FirstSmaple" NavigateUrl="~/Queries/FirstSample.aspx"></asp:MenuItem>
-                            <asp:MenuItem Text="Page2" NavigateUrl="~/MorePages/Page2"></asp:MenuItem>
+                            <asp:MenuItem Text="Rep Customer" NavigateUrl="~/Queries/RepresentiveCutomers.aspx"></asp:MenuItem>
                         </asp:MenuItem>
                         <asp:MenuItem Text="About" NavigateUrl="~/About.aspx"></asp:MenuItem>
                          <asp:MenuItem Text="Contact" NavigateUrl="~/Contact.aspx"></asp:MenuItem>

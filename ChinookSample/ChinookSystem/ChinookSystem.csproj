@@ -57,7 +57,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\ArtistController.cs" />
+    <Compile Include="BLL\ArtistController.cs" />
+    <Compile Include="BLL\CustomerController.cs" />
+    <Compile Include="BLL\EmployeeController.cs" />
     <Compile Include="DAL\ChinookContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\ApplicationDbContext.cs" />
@@ -66,9 +68,7 @@
     <Compile Include="Security\SecurityRoles.cs" />
     <Compile Include="Security\UserManager.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BLL\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ChinookSystem.Data\ChinookSystem.Data.csproj">
       <Project>{cf41f0b9-a453-42f6-9f66-b4a38a890c39}</Project>

@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChinookSystem.Data.POCOs
 {
-    public class CustomerContact
+    public class EmployeeNameList
     {
+        public int EmployeeId { get; set; }
         public string Name { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
-          
     }
 }

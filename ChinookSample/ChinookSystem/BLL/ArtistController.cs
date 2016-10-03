@@ -44,12 +44,12 @@ namespace ChinookSystem.DAL
                 //in the entity class definitions
                 var result = from x in context.Albums //Needed to change this from Alums to context.Albums
                              where x.ReleaseYear == 2008
-                             orderby x.Artists.Name, x.Title //needed to change this from Artist to Artists
+                             orderby x.Artist.Name, x.Title //needed to change this from Artist to Artists
                              select new ArtistAlbums //The POCO class
                              {
                                  //Name and Title are POCO
                                  //class property names
-                                 Name = x.Artists.Name,    //needed to change this from Artist to Artists
+                                 Name = x.Artist.Name,    //needed to change this from Artist to Artists
                                  Title = x.Title
                              };
                 //the following requires the query data in memory

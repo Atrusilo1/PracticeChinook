@@ -38,7 +38,7 @@ namespace ChinookSystem.Data.Entities
         //properties that point to "childern" use ICollection<T>
         //prorperties that point to "Parent" use ParentName as the datatype
         public virtual ICollection<Track> Tracks { get; set; }
-        public virtual Artist Artists { get; set; }
+        public virtual Artist Artist { get; set; }
     }
 }
 
