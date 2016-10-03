@@ -5,10 +5,9 @@
     <asp:ObjectDataSource ID="EmployeeListODS" runat="server"></asp:ObjectDataSource>
 
     <br /><br /><br />
+    <asp:GridView ID="RepCustomerList" runat="server" DataSourceID="RepCutomerListODS" AllowPaging="True"></asp:GridView>
 
-    <asp:GridView ID="RepCustomer" runat="server" DataSourceID="RepCustomerODS" AllowPaging="True"></asp:GridView>
-  
-    <asp:ObjectDataSource ID="RepCustomerODS" runat="server"></asp:ObjectDataSource>
-
+    <asp:ObjectDataSource ID="RepCutomerListODS" runat="server"></asp:ObjectDataSource>
 </asp:Content>
+
 
