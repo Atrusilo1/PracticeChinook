@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web.UI;
 using Website;
 
+#region Additonal NameSpace for security
+using ChinookSystem.Security;   //This handles the AppicationUser, applicationDbContext, UserManager
+#endregion
+
 public partial class Account_Register : Page
 {
     protected void CreateUser_Click(object sender, EventArgs e)
