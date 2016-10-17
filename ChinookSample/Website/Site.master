@@ -84,9 +84,12 @@
                         DynamicMenuStyle-BackColor="Black">
                      <Items>
                         <asp:MenuItem Text="Home" NavigateUrl="~/"></asp:MenuItem>
-                        <asp:MenuItem Text="DDLPages" Value="bob" >
-                            <asp:MenuItem Text="FirstSmaple" NavigateUrl="~/Queries/FirstSample.aspx"></asp:MenuItem>
-                            <asp:MenuItem Text="Rep Customer" NavigateUrl="~/Queries/RepresentiveCutomers.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="Queries" Value="bob" >
+                            <asp:MenuItem Text="FirstSample" NavigateUrl="~/Queries/FirstSample.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Rep Customer" NavigateUrl="~/Queries/RepresentiveCutomers.aspx"></asp:MenuItem>                        
+                        </asp:MenuItem>
+                        <asp:MenuItem Text="Form Sample" Value="formSample">
+                            <asp:MenuItem Text="FirstFormSample" NavigateUrl="~/Forms/FirstSampleForm.aspx"></asp:MenuItem>
                         </asp:MenuItem>
                         <asp:MenuItem Text="About" NavigateUrl="~/About.aspx"></asp:MenuItem>
                          <asp:MenuItem Text="Contact" NavigateUrl="~/Contact.aspx"></asp:MenuItem>
