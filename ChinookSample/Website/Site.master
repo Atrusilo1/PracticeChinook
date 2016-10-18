@@ -91,6 +91,9 @@
                         <asp:MenuItem Text="Form Sample" Value="formSample">
                             <asp:MenuItem Text="FirstFormSample" NavigateUrl="~/Forms/FirstSampleForm.aspx"></asp:MenuItem>
                         </asp:MenuItem>
+                         <asp:MenuItem Text="User/Roles" Value="UserRoles">
+                             <asp:MenuItem Text="Default" NavigateUrl="~/Admin/Security/Default.aspx"></asp:MenuItem>
+                         </asp:MenuItem>
                         <asp:MenuItem Text="About" NavigateUrl="~/About.aspx"></asp:MenuItem>
                          <asp:MenuItem Text="Contact" NavigateUrl="~/Contact.aspx"></asp:MenuItem>
                     </Items>
