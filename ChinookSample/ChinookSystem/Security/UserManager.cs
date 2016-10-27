@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity.EntityFramework; //UserStore
 using Microsoft.AspNet.Identity;                //UserManager
 using System.ComponentModel;                    //for ods
 using ChinookSystem.DAL;                        //context class
+using ChinookSystem.Data.Entities;              //entity classes
 #endregion
 
 namespace ChinookSystem.Security
@@ -62,7 +63,7 @@ namespace ChinookSystem.Security
                                           select emp.EmployeeID).ToList();  //Added to list to the end
 
                 //compare the IEnumerable set of the user data table Employees
-                var unregisteredEmployes = (from emp in context.Employees
+                var unregisteredEmployees = (from emp in context.Employees
                                            where !registeredEmployees.Any(eid => emp.EmployeeId == eid)
                                            select new UnRegisteredUserProfile()
                                            {
@@ -85,9 +86,9 @@ namespace ChinookSystem.Security
                                                CustomerEmployeeId = cus.CustomerId,
                                                FirstName = cus.FirstName,
                                                LastName = cus.LastName,
-                                               UserType = UnRegisteredUserType.Employee
+                                               UserType = UnRegisteredUserType.Customer
                                            }).ToList();
-                return unregisteredEmployes.Union(unregisteredCustomer).ToList();
+                return unregisteredEmployees.Union(unregisteredCustomer).ToList();
 
             }
         }
@@ -140,8 +141,97 @@ namespace ChinookSystem.Security
             }
         }
 
+        //list all current users --the select method
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<UserProfile> ListAllUsers()
+        {
+            //we will be using the RoleManager to get roles
+            var rm = new RoleManager();
+
+            //get the current users off the User security table
+            var results = from person in Users.ToList()
+                          select new UserProfile()
+                          {
+                              UserId = person.Id,
+                              UserName = person.UserName,
+                              Email = person.Email,
+                              EmailConfirmed = person.EmailConfirmed,
+                              CustomerId = person.CustomerID,
+                              EmployeeId = person.EmployeeID,
+                              RoleMemerships = person.Roles.Select(r => rm.FindById(r.RoleId).Name)
+                          };
+
+            //using our own data tables, gather the user firstName and lastName
+            using (var context = new ChinookContext())
+            {
+                Employee etemp;
+                Customer ctemp;
+                foreach(var person in results)
+                {
+                    if (person.EmployeeId.HasValue)
+                    {
+                        etemp = context.Employees.Find(person.EmployeeId);
+                        person.FirstName = etemp.FirstName;
+                        person.LastName = etemp.LastName;
+                    }
+                    else if (person.CustomerId.HasValue)
+                    {
+                        ctemp = context.Customers.Find(person.CustomerId);
+                        person.FirstName = ctemp.FirstName;
+                        person.LastName = ctemp.LastName;
+                    }
+                    else
+                    {
+                        person.FirstName = "Unknown";
+                        person.LastName = "";
+                    }
+                }
+            }
+            return results.ToList();
+        }
+
         //add a user to the user table (ListView)
+        [DataObjectMethod(DataObjectMethodType.Insert,true)]
+        public void AddUser(UserProfile userinfo)
+        {
+            //create an instance representing the new user 
+            var useraccount = new ApplicationUser()
+            {
+                UserName = userinfo.UserName,
+                Email = userinfo.Email
+            };
+
+            //create the new user on the physical user tables
+            this.Create(useraccount, STR_DEFAULT_PASSWORD);
+            
+            //create the userRoles which were choosen at insert time
+            foreach(var roleName in userinfo.RoleMemerships)
+            {
+                this.AddToRole(useraccount.Id, roleName);
+            }
+        }
 
         //delete a user from the user Tables (ListView)
+        [DataObjectMethod(DataObjectMethodType.Delete, true)]
+        public void RemoveUser(UserProfile userinfo)
+        {
+            //business rule
+            //the webmaster cannot be deleted
+
+            //realize that the only information that you have at this time
+            //is the DataKeyNames value which is the UserId which is on the 
+            //user security table field is ID
+
+            //obtain the username from the security user table 
+            //using the user ID vale
+            string UserName = this.Users.Where(u => u.Id == userinfo.UserId)
+                              .Select(u => u.UserName).SingleOrDefault().ToString();
+            //remove the user
+            if(UserName.Equals(STR_WEBMASTER_USERNAME))
+            {
+                throw new Exception("The webmaster account cannot be removed");
+            }
+            this.Delete(this.FindById(userinfo.UserId));
+        }
     }
 }

@@ -68,7 +68,7 @@ namespace ChinookSystem.Security
 
         //this method will produce a list of all rolesNames
         [DataObjectMethod(DataObjectMethodType.Select,false)]
-        public List<string> ListAllRoleName()
+        public List<string> ListAllRoleNames()
         {
             return this.Roles.Select(r => r.Name).ToList();
         }
