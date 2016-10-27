@@ -101,7 +101,7 @@
                       <asp:GridView ID="UnregisteredUsersGridView" runat="server" 
                         AutoGenerateColumns="False" 
                         DataSourceID="UnregisteredUsersODS"
-                         DataKeyNames="UserId"
+                         DataKeyNames="CustomerEmployeeId"
                          ItemType="ChinookSystem.Security.UnRegisteredUserProfile" OnSelectedIndexChanging="UnregisteredUsersGridView_SelectedIndexChanging">
                         <Columns>
                             <asp:CommandField SelectText="Register" ShowSelectButton="True"></asp:CommandField>

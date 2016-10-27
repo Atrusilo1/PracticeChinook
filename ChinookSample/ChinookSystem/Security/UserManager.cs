@@ -60,12 +60,13 @@ namespace ChinookSystem.Security
                 var registeredEmployees =( from emp in Users
                                           where emp.EmployeeID.HasValue
                                           select emp.EmployeeID).ToList();  //Added to list to the end
+
                 //compare the IEnumerable set of the user data table Employees
                 var unregisteredEmployes = (from emp in context.Employees
                                            where !registeredEmployees.Any(eid => emp.EmployeeId == eid)
                                            select new UnRegisteredUserProfile()
                                            {
-                                               UserId = emp.EmployeeId,
+                                               CustomerEmployeeId = emp.EmployeeId,
                                                FirstName = emp.FirstName,
                                                LastName = emp.LastName,
                                                UserType = UnRegisteredUserType.Employee
@@ -75,12 +76,13 @@ namespace ChinookSystem.Security
                 var registeredCustomer = (from cus in Users
                                           where cus.CustomerID.HasValue
                                           select cus.CustomerID).ToList();
+
                 //compare the IEnumerable set of the user data table Employees
                 var unregisteredCustomer = (from cus in context.Customers
                                            where !registeredCustomer.Any(cid => cus.CustomerId == cid)
                                            select new UnRegisteredUserProfile()
                                            {
-                                               UserId = cus.CustomerId,
+                                               CustomerEmployeeId = cus.CustomerId,
                                                FirstName = cus.FirstName,
                                                LastName = cus.LastName,
                                                UserType = UnRegisteredUserType.Employee
