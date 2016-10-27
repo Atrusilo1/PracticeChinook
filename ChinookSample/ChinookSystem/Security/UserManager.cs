@@ -101,8 +101,8 @@ namespace ChinookSystem.Security
             //the instance of the required user is based on our applicationUser
             var newuseraccount = new ApplicationUser()
             {
-                UserName = userinfo.UserName,
-                Email = userinfo.EmailAddress
+                UserName = userinfo.AssignedUserName,
+                Email = userinfo.AssignedEmail
             };
 
             //set the CustomerId of EmployeeId
@@ -110,12 +110,12 @@ namespace ChinookSystem.Security
             {
                 case UnRegisteredUserType.Customer:
                     {
-                        newuseraccount.Id = userinfo.UserId.ToString();
+                        newuseraccount.CustomerID = userinfo.CustomerEmployeeId;
                         break;
                     }
                 case UnRegisteredUserType.Employee:
                     {
-                        newuseraccount.Id = userinfo.UserId.ToString();
+                        newuseraccount.EmployeeID = userinfo.CustomerEmployeeId;
                         break;
                     }
             }
@@ -124,6 +124,7 @@ namespace ChinookSystem.Security
             this.Create(newuseraccount, STR_DEFAULT_PASSWORD);
 
             //assign user to appropriate role
+            //uses the guid like user Id from the user's table
             switch (userinfo.UserType)
             {
                 case UnRegisteredUserType.Customer:
