@@ -46,12 +46,17 @@
     <Compile Include="Entities\Artist.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Employee.cs" />
+    <Compile Include="Entities\Genre.cs" />
+    <Compile Include="Entities\Invoice.cs" />
+    <Compile Include="Entities\InvoiceLine.cs" />
     <Compile Include="Entities\MediaType.cs" />
+    <Compile Include="Entities\PlayList.cs" />
     <Compile Include="Entities\Track.cs" />
     <Compile Include="POCOs\AlbumTrackSummary.cs" />
     <Compile Include="POCOs\ArtistAlbums.cs" />
     <Compile Include="POCOs\CustomerContact.cs" />
     <Compile Include="POCOs\EmployeeNameList.cs" />
+    <Compile Include="POCOs\ForeignKeyList.cs" />
     <Compile Include="POCOs\MediaTypeTrackCount.cs" />
     <Compile Include="POCOs\RepresentitiveCustomer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
