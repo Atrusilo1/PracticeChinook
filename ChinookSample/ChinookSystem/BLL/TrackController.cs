@@ -41,7 +41,8 @@ namespace ChinookSystem.BLL
             using (var context = new ChinookContext())
             {
                 //any business rules 
-
+                if (trackinfo.UnitPrice > 1.0m)
+                    throw new Exception("Bob's your uncle");
                 //any data refinements
                 //review of using iif
                 //composer can be a null string 
